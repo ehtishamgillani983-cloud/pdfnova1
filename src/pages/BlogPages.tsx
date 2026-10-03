@@ -239,7 +239,7 @@ interface BlogPostPageProps {
 }
 
 export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) => {
-  const PRODUCTION_ORIGIN = 'https://aipdftools.vercel.app';
+  const PRODUCTION_ORIGIN = 'https://pdfnova1.vercel.app';
   const fullArticleUrl = `${PRODUCTION_ORIGIN}/blog/${post.slug}`;
   const relatedPosts = getRelatedPosts(post);
 

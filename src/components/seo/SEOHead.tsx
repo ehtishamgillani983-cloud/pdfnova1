@@ -16,7 +16,7 @@ interface SEOHeadProps {
   jsonLd?: Record<string, any> | Record<string, any>[];
 }
 
-const PRODUCTION_ORIGIN = 'https://aipdftools.vercel.app';
+const PRODUCTION_ORIGIN = 'https://pdfnova1.vercel.app';
 const DEFAULT_OG_IMAGE = `${PRODUCTION_ORIGIN}/og-image.svg`;
 
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;

@@ -32,5 +32,5 @@
   
   <!-- Domain Badge -->
   <rect x="120" y="520" width="340" height="48" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
-  <text x="150" y="551" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="18" fill="#e2e8f0">https://aipdftools.vercel.app</text>
+  <text x="150" y="551" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="18" fill="#e2e8f0">https://pdfnova1.vercel.app</text>
 </svg>

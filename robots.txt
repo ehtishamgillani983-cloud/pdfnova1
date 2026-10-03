@@ -1,4 +1,4 @@
-# Robots.txt for https://aipdftools.vercel.app
+# Robots.txt for https://pdfnova1.vercel.app
 User-agent: *
 Allow: /
 
@@ -13,4 +13,4 @@ Disallow: /forgot-password
 Disallow: /reset-password
 
 # XML Sitemap
-Sitemap: https://aipdftools.vercel.app/sitemap.xml
+Sitemap: https://pdfnova1.vercel.app/sitemap.xml

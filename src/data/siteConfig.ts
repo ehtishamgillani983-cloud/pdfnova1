@@ -2,7 +2,7 @@ export const SITE_CONFIG = {
   name: 'PDFNova',
   tagline: 'Free PDF Tools & AI Document Tools',
   description: 'Fast, secure online platform for converting, compressing, merging, editing, and understanding PDF documents with AI.',
-  url: 'https://aipdftools.vercel.app',
+  url: 'https://pdfnova1.vercel.app',
   supportEmail: 'support@pdfnova.com',
   limits: {
     maxFileSizeMb: 100,

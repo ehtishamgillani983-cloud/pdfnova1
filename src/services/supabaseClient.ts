@@ -496,7 +496,7 @@ class SupabaseServiceLayer {
 
     if (this.client) {
       try {
-        const origin = typeof window !== 'undefined' ? window.location.origin : 'https://aipdftools.vercel.app';
+        const origin = typeof window !== 'undefined' ? window.location.origin : 'https://pdfnova1.vercel.app';
         const { error } = await this.client.auth.resetPasswordForEmail(cleanEmail, {
           redirectTo: `${origin}/reset-password`,
         });

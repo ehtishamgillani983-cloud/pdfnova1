@@ -78,11 +78,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     {
       '@type': 'WebSite',
       name: 'PDFNova',
-      url: 'https://aipdftools.vercel.app',
+      url: 'https://pdfnova1.vercel.app',
       description: 'Free online PDF tools and AI document converter. Convert, compress, merge, edit and understand documents online.',
       potentialAction: {
         '@type': 'SearchAction',
-        target: 'https://aipdftools.vercel.app/tools?q={search_term_string}',
+        target: 'https://pdfnova1.vercel.app/tools?q={search_term_string}',
         'query-input': 'required name=search_term_string',
       },
     },

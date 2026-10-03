@@ -558,7 +558,7 @@ const ToolLayoutWrapper: React.FC<ToolLayoutWrapperProps> = ({
         '@type': 'WebApplication',
         name: tool.seoTitle,
         description: tool.seoDescription,
-        url: `https://aipdftools.vercel.app/${tool.slug}`,
+        url: `https://pdfnova1.vercel.app/${tool.slug}`,
         applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'All',
         offers: {
