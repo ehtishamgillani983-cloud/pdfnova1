@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2563eb"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="150" r="300" fill="#2563eb" fill-opacity="0.12"/>
+  <circle cx="150" cy="500" r="250" fill="#4f46e5" fill-opacity="0.1"/>
+  
+  <!-- Icon -->
+  <rect x="120" y="140" width="90" height="90" rx="24" fill="url(#accent)"/>
+  <path d="M152 162h20l14 14v30a4 4 0 0 1-4 4h-30a4 4 0 0 1-4-4v-40a4 4 0 0 1 4-4z" fill="#ffffff"/>
+  <path d="M172 162v14h14" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+  
+  <!-- Brand text -->
+  <text x="235" y="195" font-family="system-ui, -apple-system, sans-serif" font-weight="900" font-size="52" fill="#ffffff" letter-spacing="-1">PDF<tspan fill="#60a5fa">Nova</tspan></text>
+  <text x="238" y="218" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="16" fill="#94a3b8" letter-spacing="3">FREE DOCUMENT UTILITIES</text>
+  
+  <!-- Headline -->
+  <text x="120" y="320" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#ffffff" letter-spacing="-1">Fast, Free Online PDF Tools</text>
+  <text x="120" y="380" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" fill="#60a5fa" letter-spacing="-1">&amp; AI Document Intelligence</text>
+  
+  <!-- Subheading -->
+  <text x="120" y="440" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="24" fill="#cbd5e1">Convert, compress, merge, split, OCR, summarize, and chat with PDFs.</text>
+  <text x="120" y="475" font-family="system-ui, -apple-system, sans-serif" font-weight="400" font-size="24" fill="#94a3b8">100% Free · Client-Side Security · No Installation Required</text>
+  
+  <!-- Domain Badge -->
+  <rect x="120" y="520" width="340" height="48" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+  <text x="150" y="551" font-family="system-ui, -apple-system, sans-serif" font-weight="700" font-size="18" fill="#e2e8f0">https://aipdftools.vercel.app</text>
+</svg>
