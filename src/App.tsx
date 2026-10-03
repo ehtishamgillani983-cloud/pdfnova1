@@ -21,7 +21,7 @@ import { AdminLoginPage } from './pages/admin/AdminLoginPage';
 import { AdminDashboardPage } from './pages/admin/AdminDashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { getToolBySlug, TOOLS_DATA } from './data/toolsData';
-import { BLOG_POSTS } from './data/blogData';
+import { getBlogPostBySlug, BLOG_POSTS } from './data/blogData';
 import { analytics } from './services/analytics';
 import { dbService } from './services/supabaseClient';
 import { Tool } from './types';
@@ -146,16 +146,17 @@ export default function App() {
     }
 
     // 6. Blog System
-    if (currentPath === '/blog') {
+    const normalizedBlogPath = currentPath.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
+    if (normalizedBlogPath === '/blog') {
       return <BlogListingPage onNavigate={navigate} />;
     }
-    if (currentPath.startsWith('/blog/')) {
-      const slug = currentPath.replace('/blog/', '');
-      const post = BLOG_POSTS.find((b) => b.slug === slug);
+    if (normalizedBlogPath.startsWith('/blog/')) {
+      const slug = normalizedBlogPath.replace(/^\/blog\//, '');
+      const post = getBlogPostBySlug(slug) || BLOG_POSTS.find((b) => b.slug === slug);
       if (post) {
         return <BlogPostPage post={post} onNavigate={navigate} />;
       }
-      return <BlogListingPage onNavigate={navigate} />;
+      return <NotFoundPage onNavigate={navigate} />;
     }
 
     // 7. Company & Legal Pages

@@ -10,6 +10,27 @@
     
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href="https://aipdftools.vercel.app/" />
+    <script>
+      (function() {
+        try {
+          var origin = 'https://aipdftools.vercel.app';
+          var rawPath = window.location.pathname || '/';
+          var cleanPath = rawPath === '/' ? '/' : rawPath.split('?')[0].split('#')[0].replace(/\/+$/, '');
+          var canonicalLink = document.querySelector('link[rel="canonical"]');
+          if (canonicalLink) {
+            canonicalLink.setAttribute('href', origin + cleanPath);
+          }
+          var ogUrl = document.querySelector('meta[property="og:url"]');
+          if (ogUrl) {
+            ogUrl.setAttribute('content', origin + cleanPath);
+          }
+          var twitterUrl = document.querySelector('meta[name="twitter:url"]');
+          if (twitterUrl) {
+            twitterUrl.setAttribute('content', origin + cleanPath);
+          }
+        } catch (e) {}
+      })();
+    </script>
     
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="aFZqSEC6WuxbVdViBnlvzkpJB1e-IICW1bUdsyNUR8s" />

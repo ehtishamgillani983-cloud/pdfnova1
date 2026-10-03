@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { analytics } from '../../services/analytics';
 
 export interface BreadcrumbItemMeta {
@@ -19,14 +19,21 @@ interface SEOHeadProps {
 const PRODUCTION_ORIGIN = 'https://aipdftools.vercel.app';
 const DEFAULT_OG_IMAGE = `${PRODUCTION_ORIGIN}/og-image.svg`;
 
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
 function setMetaTag(selector: string, attributeName: string, attributeValue: string, content: string) {
-  let element = document.querySelector(selector);
-  if (!element) {
-    element = document.createElement('meta');
-    element.setAttribute(attributeName, attributeValue);
-    document.head.appendChild(element);
+  if (typeof document === 'undefined') return;
+  const elements = Array.from(document.querySelectorAll(selector));
+  let primaryElement = elements[0];
+  if (!primaryElement) {
+    primaryElement = document.createElement('meta');
+    primaryElement.setAttribute(attributeName, attributeValue);
+    document.head.appendChild(primaryElement);
   }
-  element.setAttribute('content', content);
+  primaryElement.setAttribute('content', content);
+  for (let i = 1; i < elements.length; i++) {
+    elements[i].remove();
+  }
 }
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
@@ -38,7 +45,9 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   breadcrumbs,
   jsonLd,
 }) => {
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
+    if (typeof document === 'undefined') return;
+
     // 1. Update Title
     document.title = title;
 
@@ -57,23 +66,28 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       );
     }
 
-    // 4. Clean Canonical URL
-    const cleanPath = canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`;
-    const fullCanonicalUrl = `${PRODUCTION_ORIGIN}${cleanPath === '/' ? '/' : cleanPath.replace(/\/+$/, '')}`;
+    // 4. Clean & Self-Referencing Canonical URL
+    const rawPath = canonicalPath || (typeof window !== 'undefined' ? window.location.pathname : '/');
+    const cleanPath = rawPath.startsWith('/') ? rawPath : `/${rawPath}`;
+    const normalizedPath = cleanPath === '/' ? '/' : cleanPath.split('?')[0].split('#')[0].replace(/\/+$/, '');
+    const fullCanonicalUrl = `${PRODUCTION_ORIGIN}${normalizedPath}`;
 
-    let canonical = document.querySelector('link[rel="canonical"]');
+    const canonicalLinks = Array.from(document.querySelectorAll('link[rel="canonical"]'));
     if (noIndex) {
       // Remove canonical tag on 404 or private routes
-      if (canonical) {
-        canonical.remove();
-      }
+      canonicalLinks.forEach((link) => link.remove());
     } else {
-      if (!canonical) {
-        canonical = document.createElement('link');
-        canonical.setAttribute('rel', 'canonical');
-        document.head.appendChild(canonical);
+      let primaryCanonical = canonicalLinks[0];
+      if (!primaryCanonical) {
+        primaryCanonical = document.createElement('link');
+        primaryCanonical.setAttribute('rel', 'canonical');
+        document.head.appendChild(primaryCanonical);
       }
-      canonical.setAttribute('href', fullCanonicalUrl);
+      primaryCanonical.setAttribute('href', fullCanonicalUrl);
+      // Remove any extraneous or duplicate canonical tags
+      for (let i = 1; i < canonicalLinks.length; i++) {
+        canonicalLinks[i].remove();
+      }
     }
 
     // 5. OpenGraph Tags
@@ -107,12 +121,17 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     if (breadcrumbs && breadcrumbs.length > 0) {
       graphItems.push({
         '@type': 'BreadcrumbList',
-        itemListElement: breadcrumbs.map((b, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: b.name,
-          item: b.path.startsWith('http') ? b.path : `${PRODUCTION_ORIGIN}${b.path}`,
-        })),
+        itemListElement: breadcrumbs.map((b, index) => {
+          const cleanItemPath = b.path.startsWith('http')
+            ? b.path
+            : `${PRODUCTION_ORIGIN}${b.path === '/' ? '/' : b.path.split('?')[0].replace(/\/+$/, '')}`;
+          return {
+            '@type': 'ListItem',
+            position: index + 1,
+            name: b.name,
+            item: cleanItemPath,
+          };
+        }),
       });
     }
 
@@ -137,7 +156,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     }
 
     // 8. Track Page View
-    analytics.trackPageView(cleanPath, title);
+    analytics.trackPageView(normalizedPath, title);
   }, [title, description, canonicalPath, ogType, noIndex, breadcrumbs, jsonLd]);
 
   return null;
