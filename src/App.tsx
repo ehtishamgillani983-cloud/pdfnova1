@@ -117,7 +117,9 @@ export default function App() {
 
     // 2. Direct static XML sitemap and robots handler
     if (currentPath === '/sitemap.xml' || currentPath === '/robots.txt') {
-      window.location.replace(currentPath);
+      if (typeof window !== 'undefined') {
+        window.location.href = currentPath;
+      }
       return null;
     }
 
