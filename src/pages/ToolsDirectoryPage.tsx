@@ -163,9 +163,13 @@ export const ToolsDirectoryPage: React.FC<ToolsDirectoryPageProps> = ({ onNaviga
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
             {filteredTools.map((tool) => (
-              <div
+              <a
                 key={tool.id}
-                onClick={() => onNavigate(`/${tool.slug}`)}
+                href={`/${tool.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`/${tool.slug}`);
+                }}
                 className="group bg-white rounded-2xl p-5 border border-slate-200/80 hover:border-blue-400/80 hover:shadow-lg transition-all duration-200 flex flex-col justify-between cursor-pointer relative"
               >
                 <div>
@@ -199,7 +203,7 @@ export const ToolsDirectoryPage: React.FC<ToolsDirectoryPageProps> = ({ onNaviga
                   <span>Open Tool</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         )}

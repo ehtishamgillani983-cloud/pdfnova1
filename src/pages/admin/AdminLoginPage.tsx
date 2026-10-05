@@ -159,12 +159,16 @@ export const AdminLoginPage: React.FC<AdminLoginPageProps> = ({ onLoginSuccess, 
         </form>
 
         <div className="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500">
-          <button
-            onClick={() => onNavigate('/')}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/');
+            }}
             className="hover:text-slate-300 transition-colors"
           >
             ← Return to Website
-          </button>
+          </a>
           <span className="font-mono text-[10px]">RLS Enforced</span>
         </div>
       </div>

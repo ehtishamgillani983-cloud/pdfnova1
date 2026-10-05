@@ -93,14 +93,17 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate, onLoginSucce
                 {confirmationNotice}
               </p>
               <div className="pt-4">
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/login')}
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/login');
+                  }}
                   className="w-full py-3.5 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl text-sm transition shadow-md shadow-blue-500/20 flex items-center justify-center gap-2"
                 >
                   Proceed to Sign In
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
               </div>
             </div>
           ) : (
@@ -202,13 +205,16 @@ export const SignUpPage: React.FC<SignUpPageProps> = ({ onNavigate, onLoginSucce
           <div className="mt-6 pt-6 border-t border-slate-100 text-center">
             <p className="text-sm text-slate-600">
               Already have an account?{' '}
-              <button
-                type="button"
-                onClick={() => onNavigate('/login')}
+              <a
+                href="/login"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/login');
+                }}
                 className="font-semibold text-blue-600 hover:text-blue-700 transition"
               >
                 Sign In
-              </button>
+              </a>
             </p>
           </div>
             </>

@@ -128,21 +128,29 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-              <button
-                onClick={() => onNavigate('/tools')}
+              <a
+                href="/tools"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/tools');
+                }}
                 className="w-full sm:w-auto px-7 py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-sm rounded-xl shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2 group"
               >
                 <span>{content.primaryCtaText}</span>
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
+              </a>
 
-              <button
-                onClick={() => onNavigate('/chat-with-pdf')}
+              <a
+                href="/chat-with-pdf"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/chat-with-pdf');
+                }}
                 className="w-full sm:w-auto px-6 py-3.5 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-800 border border-slate-300 font-semibold text-sm rounded-xl shadow-xs transition-all flex items-center justify-center gap-2"
               >
                 <Sparkles className="w-4 h-4 text-amber-500" />
                 <span>{content.secondaryCtaText}</span>
-              </button>
+              </a>
             </div>
 
             {/* Trust points */}
@@ -184,23 +192,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 { name: 'Merge PDF', slug: 'merge-pdf', icon: Combine, color: 'text-indigo-600 bg-indigo-50' },
                 { name: 'Chat with AI', slug: 'chat-with-pdf', icon: Sparkles, color: 'text-amber-600 bg-amber-50' },
               ].map((item) => (
-                <button
+                <a
                   key={item.slug}
-                  onClick={() => onNavigate(`/${item.slug}`)}
-                  className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-slate-50/80 transition-all text-center group"
+                  href={`/${item.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(`/${item.slug}`);
+                  }}
+                  className="flex flex-col items-center justify-center p-3 rounded-xl border border-slate-200 hover:border-blue-400 hover:bg-slate-50/80 transition-all text-center group cursor-pointer"
                 >
                   <div className={`w-10 h-10 rounded-xl ${item.color} flex items-center justify-center mb-2 group-hover:scale-110 transition-transform`}>
                     <item.icon className="w-5 h-5" />
                   </div>
                   <span className="text-xs font-bold text-slate-800">{item.name}</span>
-                </button>
+                </a>
               ))}
             </div>
 
             {/* Drag & Drop Action Box */}
-            <div
-              onClick={() => onNavigate('/tools')}
-              className="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50/50 hover:bg-blue-50/30 rounded-2xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center group"
+            <a
+              href="/tools"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/tools');
+              }}
+              className="border-2 border-dashed border-slate-300 hover:border-blue-500 bg-slate-50/50 hover:bg-blue-50/30 rounded-2xl p-8 text-center cursor-pointer transition-all flex flex-col items-center justify-center group block"
             >
               <div className="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center mb-3 shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
                 <Upload className="w-6 h-6" />
@@ -214,7 +230,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <span className="text-xs font-semibold text-blue-600 group-hover:underline flex items-center gap-1">
                 Choose tool from directory <ChevronRight className="w-3.5 h-3.5" />
               </span>
-            </div>
+            </a>
           </div>
         </div>
       </section>
@@ -233,20 +249,28 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               The most trusted converters and page management tools used daily.
             </p>
           </div>
-          <button
-            onClick={() => onNavigate('/tools')}
+          <a
+            href="/tools"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/tools');
+            }}
             className="text-xs font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1 group"
           >
             <span>View all 15+ tools</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {popularTools.map((tool) => (
-            <div
+            <a
               key={tool.id}
-              onClick={() => onNavigate(`/${tool.slug}`)}
+              href={`/${tool.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(`/${tool.slug}`);
+              }}
               className="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-400 transition-all cursor-pointer flex flex-col justify-between group"
             >
               <div>
@@ -265,7 +289,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <span>Start conversion</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
-            </div>
+            </a>
           ))}
         </div>
       </section>
@@ -288,9 +312,13 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {aiTools.map((tool) => (
-              <div
+              <a
                 key={tool.id}
-                onClick={() => onNavigate(`/${tool.slug}`)}
+                href={`/${tool.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`/${tool.slug}`);
+                }}
                 className="bg-slate-800/80 hover:bg-slate-800 border border-slate-700/80 rounded-2xl p-6 transition-all cursor-pointer flex flex-col justify-between group hover:border-blue-500"
               >
                 <div>
@@ -309,7 +337,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <span>Try AI tool</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -486,18 +514,26 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             Join thousands of students, researchers, and business professionals who convert, compress, and analyze documents with PDFNova every day.
           </p>
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button
-              onClick={() => onNavigate('/tools')}
+            <a
+              href="/tools"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/tools');
+              }}
               className="w-full sm:w-auto px-8 py-3.5 bg-white text-blue-700 hover:bg-blue-50 font-bold text-sm rounded-xl shadow-lg transition-all"
             >
               Get Started for Free
-            </button>
-            <button
-              onClick={() => onNavigate('/signup')}
+            </a>
+            <a
+              href="/signup"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/signup');
+              }}
               className="w-full sm:w-auto px-7 py-3.5 bg-blue-800/80 hover:bg-blue-800 text-white border border-blue-400/40 font-semibold text-sm rounded-xl transition-all"
             >
               Create Free Account
-            </button>
+            </a>
           </div>
         </div>
       </section>

@@ -311,9 +311,9 @@ export const ToolPageTemplate: React.FC<ToolPageTemplateProps> = ({ tool, onNavi
             <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 mb-4 group-hover:scale-105 transition-transform">
               <Upload className="w-8 h-8" />
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-1">
+            <p className="text-xl font-bold text-slate-900 mb-1">
               Select or Drop {tool.name} File{tool.multiFile ? 's' : ''}
-            </h3>
+            </p>
             <p className="text-sm text-slate-500 mb-5 max-w-md">
               Supports {tool.allowedExtensions.join(', ')} up to {tool.maxFileSizeMb}MB. No watermarks.
             </p>
@@ -327,9 +327,9 @@ export const ToolPageTemplate: React.FC<ToolPageTemplateProps> = ({ tool, onNavi
         {status === 'idle' && files.length > 0 && (
           <div className="space-y-6 max-w-2xl mx-auto">
             <div className="flex items-center justify-between pb-3 border-b border-slate-100">
-              <h4 className="text-sm font-bold text-slate-900">
+              <p className="text-sm font-bold text-slate-900">
                 Selected Files ({files.length})
-              </h4>
+              </p>
               {tool.multiFile && (
                 <button
                   onClick={() => fileInputRef.current?.click()}
@@ -458,7 +458,7 @@ export const ToolPageTemplate: React.FC<ToolPageTemplateProps> = ({ tool, onNavi
           <div className="py-14 text-center max-w-md mx-auto space-y-5">
             <div className="w-14 h-14 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
             <div className="space-y-2">
-              <h4 className="text-base font-bold text-slate-900">{progressMsg}</h4>
+              <p className="text-base font-bold text-slate-900">{progressMsg}</p>
               <div className="w-full bg-slate-100 rounded-full h-2 overflow-hidden">
                 <div
                   className="bg-blue-600 h-full transition-all duration-300 rounded-full"
@@ -478,9 +478,9 @@ export const ToolPageTemplate: React.FC<ToolPageTemplateProps> = ({ tool, onNavi
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-slate-900 mb-1">
+              <p className="text-xl font-bold text-slate-900 mb-1">
                 Your Document Is Ready!
-              </h3>
+              </p>
               <p className="text-xs text-slate-500 font-medium">
                 {result.fileName} · {(result.sizeBytes / 1024).toFixed(1)} KB
                 {result.savedPercentage && (
@@ -517,7 +517,7 @@ export const ToolPageTemplate: React.FC<ToolPageTemplateProps> = ({ tool, onNavi
             <div className="w-14 h-14 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center mx-auto">
               <AlertCircle className="w-8 h-8" />
             </div>
-            <h4 className="text-base font-bold text-slate-900">Conversion Issue</h4>
+            <p className="text-base font-bold text-slate-900">Conversion Issue</p>
             <p className="text-xs text-slate-600">{errorMsg}</p>
             <button
               onClick={handleReset}
@@ -751,13 +751,15 @@ const ToolLayoutWrapper: React.FC<ToolLayoutWrapperProps> = ({
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {relatedTools.map((rel) => (
-                <button
+                <a
                   key={rel.id}
-                  onClick={() => {
+                  href={`/${rel.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
                     onNavigate(`/${rel.slug}`);
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                   }}
-                  className="p-4 bg-white hover:bg-blue-50/50 rounded-2xl border border-slate-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow group"
+                  className="p-4 bg-white hover:bg-blue-50/50 rounded-2xl border border-slate-200 hover:border-blue-300 text-left transition-all shadow-sm hover:shadow group block"
                 >
                   <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center mb-2.5 group-hover:scale-105 transition-transform">
                     <FileText className="w-4 h-4" />
@@ -768,7 +770,7 @@ const ToolLayoutWrapper: React.FC<ToolLayoutWrapperProps> = ({
                   <p className="text-xs text-slate-500 line-clamp-2">
                     {rel.shortDescription}
                   </p>
-                </button>
+                </a>
               ))}
             </div>
           </section>

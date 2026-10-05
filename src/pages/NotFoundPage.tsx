@@ -33,20 +33,28 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-          <button
-            onClick={() => onNavigate('/')}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/');
+            }}
             className="w-full sm:w-auto px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl flex items-center justify-center gap-2 shadow-sm cursor-pointer transition-colors"
           >
             <Home className="w-4 h-4" />
             <span>Return to Homepage</span>
-          </button>
-          <button
-            onClick={() => onNavigate('/tools')}
+          </a>
+          <a
+            href="/tools"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/tools');
+            }}
             className="w-full sm:w-auto px-5 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold rounded-xl flex items-center justify-center gap-2 border border-slate-200 cursor-pointer transition-colors"
           >
             <Search className="w-4 h-4" />
             <span>Browse All PDF Tools</span>
-          </button>
+          </a>
         </div>
       </div>
     </div>

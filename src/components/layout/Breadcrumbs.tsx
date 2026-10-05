@@ -16,13 +16,17 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, onNavigate }) =
     <nav aria-label="Breadcrumb" className="py-3 text-xs text-slate-500">
       <ol className="flex items-center space-x-2">
         <li>
-          <button
-            onClick={() => onNavigate('/')}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('/');
+            }}
             className="flex items-center gap-1 hover:text-slate-900 transition-colors"
           >
             <Home className="w-3.5 h-3.5" />
             <span className="sr-only">Home</span>
-          </button>
+          </a>
         </li>
         {items.map((item, idx) => {
           const isLast = idx === items.length - 1;
@@ -35,12 +39,16 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items, onNavigate }) =
                     {item.label}
                   </span>
                 ) : (
-                  <button
-                    onClick={() => onNavigate(item.path!)}
+                  <a
+                    href={item.path}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(item.path!);
+                    }}
                     className="hover:text-slate-900 transition-colors"
                   >
                     {item.label}
-                  </button>
+                  </a>
                 )}
               </li>
             </React.Fragment>

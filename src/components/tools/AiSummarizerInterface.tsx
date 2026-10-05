@@ -140,9 +140,9 @@ ${summaryData.questions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 mb-4">
             <Sparkles className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 mb-1">
+          <p className="text-lg font-bold text-slate-900 mb-1">
             Upload PDF for Instant AI Summarization
-          </h3>
+          </p>
           <p className="text-sm text-slate-500 mb-4 max-w-sm">
             Drag & drop your document here or click to browse files (PDF or TXT up to 50MB).
           </p>
@@ -153,7 +153,7 @@ ${summaryData.questions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
       ) : loading ? (
         <div className="py-16 text-center max-w-md mx-auto space-y-4">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <h3 className="text-base font-bold text-slate-900">{progressMsg}</h3>
+          <p className="text-base font-bold text-slate-900">{progressMsg}</p>
           <p className="text-xs text-slate-500">
             Extracting text tokens, mapping semantic structure, and formulating insights...
           </p>
@@ -167,9 +167,9 @@ ${summaryData.questions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-slate-900 truncate max-w-[280px]">
+                <p className="text-sm font-bold text-slate-900 truncate max-w-[280px]">
                   {file.name}
-                </h4>
+                </p>
                 <span className="text-xs text-slate-500">
                   {(file.size / (1024 * 1024)).toFixed(2)} MB · Analysis Completed
                 </span>
@@ -253,27 +253,27 @@ ${summaryData.questions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
           <div className="p-6 bg-slate-50/50 rounded-2xl border border-slate-200 leading-relaxed text-sm text-slate-800 min-h-[220px]">
             {activeTab === 'short' && (
               <div className="space-y-3">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Executive Brief
-                </h5>
+                </p>
                 <p className="text-slate-700 text-base">{summaryData.shortSummary}</p>
               </div>
             )}
 
             {activeTab === 'detailed' && (
               <div className="space-y-3">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Section Analysis
-                </h5>
+                </p>
                 <p className="whitespace-pre-wrap text-slate-700">{summaryData.detailedSummary}</p>
               </div>
             )}
 
             {activeTab === 'keypoints' && (
               <div className="space-y-3">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Key Takeaways & Action Items
-                </h5>
+                </p>
                 <ul className="space-y-2">
                   {summaryData.keyPoints.map((pt, i) => (
                     <li key={i} className="flex items-start gap-2.5">
@@ -289,9 +289,9 @@ ${summaryData.questions.map((q, i) => `Q${i + 1}: ${q}`).join('\n')}
 
             {activeTab === 'questions' && (
               <div className="space-y-3">
-                <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">
                   Important Questions Addressed in Document
-                </h5>
+                </p>
                 <div className="space-y-2">
                   {summaryData.questions.map((q, i) => (
                     <div

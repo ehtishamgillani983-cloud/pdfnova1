@@ -23,60 +23,88 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => handleNav('/tools/pdf-to-word')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/pdf-to-word"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/pdf-to-word');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   PDF to Word
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/word-to-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/word-to-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/word-to-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Word to PDF
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/merge-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/merge-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/merge-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Merge PDF
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/split-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/split-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/split-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Split PDF
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/compress-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/compress-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/compress-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Compress PDF
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/pdf-to-jpg')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/pdf-to-jpg"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/pdf-to-jpg');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   PDF to JPG
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/jpg-to-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/jpg-to-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/jpg-to-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   JPG to PDF
-                </button>
+                </a>
               </li>
             </ul>
           </div>
@@ -85,48 +113,80 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-1.5">
               <span>AI Document Tools</span>
-              <Sparkles className="w-3 h-3 text-amber-400" />
+              <Sparkles className="w-3-h-3 text-amber-400" />
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => handleNav('/tools/ai-pdf-summarizer')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/pdf-summarizer"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/pdf-summarizer');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   AI PDF Summarizer
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/chat-with-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/chat-with-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/chat-with-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Chat with PDF
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/pdf-ocr')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/ocr-pdf"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/ocr-pdf');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Neural PDF OCR
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/pdf-translator')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/pdf-translator"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/pdf-translator');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   PDF Translator
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools/rotate-pdf')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/pdf-editor"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/pdf-editor');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
-                  Rotate PDF
-                </button>
+                  Free PDF Editor
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/pdf-to-excel"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/pdf-to-excel');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
+                >
+                  PDF to Excel
+                </a>
               </li>
             </ul>
           </div>
@@ -134,24 +194,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Col 3: Resources */}
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
-              Resources & SEO
+              Resources &amp; SEO
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => handleNav('/blog')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/blog"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/blog');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
-                  PDF Guides & Blog
-                </button>
+                  PDF Guides &amp; Blog
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/tools')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/tools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/tools');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Full Tools Directory
-                </button>
+                </a>
               </li>
               <li>
                 <a
@@ -183,33 +251,45 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => handleNav('/about')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/about');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   About PDFNova
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/contact')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/contact');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Contact Support
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/account')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/account"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/account');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   My Account
-                </button>
+                </a>
               </li>
               <li>
                 <div className="flex items-center gap-1.5 text-xs text-emerald-400 mt-2">
                   <Shield className="w-3.5 h-3.5" />
-                  <span>100% Free & Secure</span>
+                  <span>100% Free &amp; Secure</span>
                 </div>
               </li>
             </ul>
@@ -218,24 +298,44 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Col 5: Legal */}
           <div>
             <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-4">
-              Legal & Privacy
+              Legal &amp; Privacy
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => handleNav('/privacy-policy')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/privacy-policy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/privacy-policy');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Privacy Policy
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/terms-of-service')}
-                  className="hover:text-white transition-colors text-left"
+                <a
+                  href="/terms-of-service"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/terms-of-service');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
                 >
                   Terms of Service
-                </button>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/cookie-policy"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/cookie-policy');
+                  }}
+                  className="hover:text-white transition-colors text-left block"
+                >
+                  Cookie Policy
+                </a>
               </li>
               <li>
                 <span className="text-xs text-slate-500 block pt-1">
@@ -253,20 +353,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               P
             </div>
             <span>
-              © {new Date().getFullYear()} {SITE_CONFIG.name} (SZ.PDF). All rights reserved.
+              © {new Date().getFullYear()} {SITE_CONFIG.name}. All rights reserved.
             </span>
           </div>
 
           <div className="flex items-center gap-4">
-            <span>Built for students, developers & professionals</span>
+            <span>Built for students, developers &amp; professionals</span>
             <span>·</span>
-            <button
-              onClick={() => handleNav('/admin/login')}
+            <a
+              href="/admin/login"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/admin/login');
+              }}
               className="text-slate-600 hover:text-slate-400 transition-colors"
               title="System Console"
             >
               Console
-            </button>
+            </a>
           </div>
         </div>
       </div>

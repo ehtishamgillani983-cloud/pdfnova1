@@ -92,13 +92,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
                 <label className="block text-sm font-semibold text-slate-700">
                   Password
                 </label>
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/forgot-password')}
+                <a
+                  href="/forgot-password"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/forgot-password');
+                  }}
                   className="text-xs font-semibold text-blue-600 hover:text-blue-700 transition"
                 >
                   Forgot password?
-                </button>
+                </a>
               </div>
               <div className="relative">
                 <Lock className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
@@ -132,13 +135,16 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate, onLoginSuccess
           <div className="mt-6 pt-6 border-t border-slate-100 text-center">
             <p className="text-sm text-slate-600">
               Don't have an account?{' '}
-              <button
-                type="button"
-                onClick={() => onNavigate('/signup')}
+              <a
+                href="/signup"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate('/signup');
+                }}
                 className="font-semibold text-blue-600 hover:text-blue-700 transition"
               >
                 Sign Up for free
-              </button>
+              </a>
             </p>
           </div>
         </div>

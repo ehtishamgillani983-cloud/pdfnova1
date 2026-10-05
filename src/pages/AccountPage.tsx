@@ -261,13 +261,17 @@ export const AccountPage: React.FC<AccountPageProps> = ({ onNavigate, onLogout }
                 Explore our full suite of free PDF tools including Word conversion, compression, merging, neural OCR, and AI document chat.
               </p>
             </div>
-            <button
-              onClick={() => onNavigate('/tools')}
+            <a
+              href="/tools"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/tools');
+              }}
               className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-white text-blue-700 font-bold text-sm shadow hover:bg-blue-50 transition shrink-0"
             >
               Browse All Tools
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </a>
           </div>
         </div>
       </div>

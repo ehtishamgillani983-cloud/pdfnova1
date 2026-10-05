@@ -67,25 +67,31 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ onNavigate }) 
         {/* Featured Guide Spotlight */}
         {featuredPost && selectedCat === 'All' && !search && (
           <section aria-labelledby="featured-heading" className="mb-12">
-            <div
-              onClick={() => onNavigate(`/blog/${featuredPost.slug}`)}
-              className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-md p-6 sm:p-10 cursor-pointer hover:border-blue-400 transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group"
-            >
+            <article className="bg-white rounded-3xl border border-slate-200/90 shadow-sm hover:shadow-md p-6 sm:p-10 hover:border-blue-400 transition-all grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
               <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center gap-2 text-xs font-semibold text-blue-600 uppercase tracking-wider">
                   <span className="bg-blue-100 text-blue-700 px-2.5 py-0.5 rounded-full font-bold">Featured Guide</span>
                   <span>·</span>
                   <span>{featuredPost.category}</span>
                 </div>
-                <h2
-                  id="featured-heading"
-                  className="text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover:text-blue-600 transition-colors leading-snug"
+                <a
+                  href={`/blog/${featuredPost.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(`/blog/${featuredPost.slug}`);
+                  }}
+                  className="block space-y-2 group/link"
                 >
-                  {featuredPost.title}
-                </h2>
-                <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
-                  {featuredPost.summary}
-                </p>
+                  <h2
+                    id="featured-heading"
+                    className="text-2xl sm:text-3xl font-extrabold text-slate-900 group-hover/link:text-blue-600 transition-colors leading-snug"
+                  >
+                    {featuredPost.title}
+                  </h2>
+                  <p className="text-sm sm:text-base text-slate-600 leading-relaxed">
+                    {featuredPost.summary}
+                  </p>
+                </a>
                 <div className="flex flex-wrap items-center gap-4 text-xs text-slate-500 pt-2">
                   <span className="font-medium text-slate-700">{featuredPost.author.name}</span>
                   <span>·</span>
@@ -95,27 +101,41 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ onNavigate }) 
                   </span>
                 </div>
                 <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-600 px-4 py-2 rounded-xl group-hover:bg-blue-700 transition-colors">
+                  <a
+                    href={`/blog/${featuredPost.slug}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(`/blog/${featuredPost.slug}`);
+                    }}
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-xl transition-colors"
+                  >
                     Read Guide
                     <ArrowRight className="w-3.5 h-3.5" />
-                  </span>
+                  </a>
                   {featuredPost.toolRoute && (
-                    <button
-                      type="button"
+                    <a
+                      href={featuredPost.toolRoute}
                       onClick={(e) => {
-                        e.stopPropagation();
+                        e.preventDefault();
                         onNavigate(featuredPost.toolRoute!);
                       }}
                       className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3.5 py-2 rounded-xl transition-colors"
                     >
                       <Wrench className="w-3.5 h-3.5 text-blue-600" />
                       Try {featuredPost.toolCtaText || 'Tool'}
-                    </button>
+                    </a>
                   )}
                 </div>
               </div>
 
-              <div className="lg:col-span-5 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl h-56 sm:h-72 flex items-center justify-center p-8 text-white text-center shadow-inner">
+              <a
+                href={`/blog/${featuredPost.slug}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(`/blog/${featuredPost.slug}`);
+                }}
+                className="lg:col-span-5 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl h-56 sm:h-72 flex items-center justify-center p-8 text-white text-center shadow-inner block"
+              >
                 <div className="space-y-3">
                   <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mx-auto text-blue-100">
                     <FileText className="w-6 h-6" />
@@ -130,8 +150,8 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ onNavigate }) 
                     Preserve tables, fonts, and layout alignment with zero hassle.
                   </p>
                 </div>
-              </div>
-            </div>
+              </a>
+            </article>
           </section>
         )}
 
@@ -180,10 +200,16 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ onNavigate }) 
               {filteredPosts.map((post) => (
                 <article
                   key={post.id}
-                  onClick={() => onNavigate(`/blog/${post.slug}`)}
-                  className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-400 transition-all cursor-pointer p-6 flex flex-col justify-between group"
+                  className="bg-white rounded-2xl border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-400 transition-all p-6 flex flex-col justify-between group relative"
                 >
-                  <div className="space-y-3">
+                  <a
+                    href={`/blog/${post.slug}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(`/blog/${post.slug}`);
+                    }}
+                    className="block space-y-3 cursor-pointer"
+                  >
                     <div className="flex items-center justify-between text-xs text-slate-500">
                       <span className="font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">
                         {post.category}
@@ -201,26 +227,34 @@ export const BlogListingPage: React.FC<BlogListingPageProps> = ({ onNavigate }) 
                     <p className="text-xs text-slate-600 leading-relaxed line-clamp-3">
                       {post.summary}
                     </p>
-                  </div>
+                  </a>
 
                   <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs">
-                    <span className="inline-flex items-center gap-1 font-semibold text-blue-600 group-hover:translate-x-0.5 transition-transform">
+                    <a
+                      href={`/blog/${post.slug}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(`/blog/${post.slug}`);
+                      }}
+                      className="inline-flex items-center gap-1 font-semibold text-blue-600 group-hover:translate-x-0.5 transition-transform"
+                    >
                       Read Guide
                       <ArrowRight className="w-3 h-3" />
-                    </span>
+                    </a>
 
                     {post.toolRoute && (
-                      <button
-                        type="button"
+                      <a
+                        href={post.toolRoute}
                         onClick={(e) => {
                           e.stopPropagation();
+                          e.preventDefault();
                           onNavigate(post.toolRoute!);
                         }}
                         className="inline-flex items-center gap-1 text-slate-500 hover:text-blue-600 font-medium transition-colors"
                       >
                         <Wrench className="w-3 h-3" />
                         <span>Tool</span>
-                      </button>
+                      </a>
                     )}
                   </div>
                 </article>
@@ -346,15 +380,18 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
 
             {post.toolRoute && (
               <div className="pt-2 flex flex-wrap items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => onNavigate(post.toolRoute!)}
+                <a
+                  href={post.toolRoute}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(post.toolRoute!);
+                  }}
                   className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl shadow-xs transition-colors text-sm"
                 >
                   <Wrench className="w-4 h-4" />
                   <span>{post.toolCtaText || 'Open Tool'}</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <span className="text-xs text-slate-500">
                   Free · No software installation needed · 100% private
                 </span>
@@ -411,14 +448,17 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
 
                 {post.toolRoute && (
                   <div className="text-center pt-2">
-                    <button
-                      type="button"
-                      onClick={() => onNavigate(post.toolRoute!)}
+                    <a
+                      href={post.toolRoute}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(post.toolRoute!);
+                      }}
                       className="inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold px-6 py-2.5 rounded-xl text-sm transition-colors"
                     >
                       <span>Start Now: {post.toolCtaText || 'Open Tool'}</span>
                       <ArrowRight className="w-4 h-4 text-blue-400" />
-                    </button>
+                    </a>
                   </div>
                 )}
               </section>
@@ -481,10 +521,14 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {relatedTools.map((t) => (
-                    <div
+                    <a
                       key={t.slug}
-                      onClick={() => onNavigate(`/${t.slug}`)}
-                      className="p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white shadow-2xs hover:shadow-xs transition-all cursor-pointer group"
+                      href={`/${t.slug}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(`/${t.slug}`);
+                      }}
+                      className="p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white shadow-2xs hover:shadow-xs transition-all cursor-pointer group block"
                     >
                       <h3 className="text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors flex items-center justify-between">
                         <span>{t.name}</span>
@@ -493,7 +537,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
                       <p className="text-xs text-slate-500 mt-1 line-clamp-2">
                         {t.shortDescription}
                       </p>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </section>
@@ -510,9 +554,13 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                   {relatedPosts.map((r) => (
-                    <div
+                    <a
                       key={r.slug}
-                      onClick={() => onNavigate(`/blog/${r.slug}`)}
+                      href={`/blog/${r.slug}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(`/blog/${r.slug}`);
+                      }}
                       className="p-4 rounded-xl border border-slate-200 hover:border-blue-400 bg-white shadow-2xs hover:shadow-xs transition-all cursor-pointer group flex flex-col justify-between"
                     >
                       <div className="space-y-1.5">
@@ -525,9 +573,9 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
                       </div>
                       <span className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 group-hover:text-blue-600 mt-3 pt-2 border-t border-slate-100">
                         Read Guide
-                        <ArrowRight className="w-3 h-3" />
+                        <ArrowRight className="w-3.5 h-3.5" />
                       </span>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </section>
@@ -543,14 +591,17 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ post, onNavigate }) 
               </p>
               {post.toolRoute && (
                 <div className="pt-2">
-                  <button
-                    type="button"
-                    onClick={() => onNavigate(post.toolRoute!)}
+                  <a
+                    href={post.toolRoute}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(post.toolRoute!);
+                    }}
                     className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-6 py-3 rounded-xl text-sm transition-colors shadow-md"
                   >
                     <span>{post.toolCtaText || 'Open Tool'}</span>
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </a>
                 </div>
               )}
             </div>

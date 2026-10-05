@@ -9,8 +9,7 @@ import {
   ArrowRight,
   Search,
   User,
-  LogOut,
-  LogIn
+  LogOut
 } from 'lucide-react';
 import { TOOL_CATEGORIES, TOOLS_DATA } from '../../data/toolsData';
 import { dbService } from '../../services/supabaseClient';
@@ -58,8 +57,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
         <div className="flex items-center justify-between h-16">
           {/* Brand Logo */}
           <div className="flex items-center gap-8">
-            <button
-              onClick={() => handleNav('/')}
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/');
+              }}
               className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-lg p-1 text-left"
             >
               <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-blue-700 via-blue-600 to-indigo-600 flex items-center justify-center text-white shadow-sm shadow-blue-500/20 group-hover:scale-105 transition-transform">
@@ -73,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   Free Document Utilities
                 </span>
               </div>
-            </button>
+            </a>
 
             {/* Desktop Navigation Links */}
             <nav className="hidden md:flex items-center gap-1 text-sm font-medium text-slate-600">
@@ -83,8 +86,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                 onMouseEnter={() => setToolsDropdownOpen(true)}
                 onMouseLeave={() => setToolsDropdownOpen(false)}
               >
-                <button
-                  onClick={() => handleNav('/tools')}
+                <a
+                  href="/tools"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/tools');
+                  }}
                   className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors hover:text-slate-950 hover:bg-slate-50 ${
                     currentPath.startsWith('/tools') || currentPath.includes('-pdf') || currentPath.includes('pdf-')
                       ? 'text-blue-600 font-semibold'
@@ -94,7 +101,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                   <Layers className="w-4 h-4 text-slate-400" />
                   <span>All Tools</span>
                   <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
-                </button>
+                </a>
 
                 {/* Dropdown Menu */}
                 {toolsDropdownOpen && (
@@ -107,9 +114,13 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                         {TOOLS_DATA.filter((t) => t.category === cat.slug)
                           .slice(0, 4)
                           .map((tool) => (
-                            <button
+                            <a
                               key={tool.id}
-                              onClick={() => handleNav(`/tools/${tool.slug}`)}
+                              href={`/${tool.slug}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleNav(`/${tool.slug}`);
+                              }}
                               className="w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left text-xs font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50/70 transition-colors"
                             >
                               <span>{tool.name}</span>
@@ -118,78 +129,106 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                                   <Sparkles className="w-2.5 h-2.5" /> AI
                                 </span>
                               )}
-                            </button>
+                            </a>
                           ))}
                       </div>
                     ))}
                     <div className="col-span-2 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
                       <span className="text-slate-500">100% free document utilities</span>
-                      <button
-                        onClick={() => handleNav('/tools')}
+                      <a
+                        href="/tools"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleNav('/tools');
+                        }}
                         className="text-blue-600 font-semibold hover:underline flex items-center gap-1"
                       >
                         Browse all tools <ArrowRight className="w-3 h-3" />
-                      </button>
+                      </a>
                     </div>
                   </div>
                 )}
               </div>
 
-              <button
-                onClick={() => handleNav('/tools/ai-pdf-summarizer')}
+              <a
+                href="/pdf-summarizer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('/pdf-summarizer');
+                }}
                 className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition-colors hover:text-slate-950 hover:bg-slate-50 ${
-                  currentPath === '/tools/ai-pdf-summarizer' || currentPath === '/tools/chat-with-pdf'
+                  currentPath === '/pdf-summarizer' || currentPath === '/chat-with-pdf'
                     ? 'text-blue-600 font-semibold'
                     : ''
                 }`}
               >
                 <Sparkles className="w-4 h-4 text-amber-500" />
                 <span>AI Tools</span>
-              </button>
+              </a>
 
-              <button
-                onClick={() => handleNav('/blog')}
+              <a
+                href="/blog"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('/blog');
+                }}
                 className={`px-3 py-2 rounded-lg transition-colors hover:text-slate-950 hover:bg-slate-50 ${
                   currentPath === '/blog' || currentPath.startsWith('/blog/') ? 'text-blue-600 font-semibold' : ''
                 }`}
               >
                 Blog
-              </button>
+              </a>
 
-              <button
-                onClick={() => handleNav('/about')}
+              <a
+                href="/about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('/about');
+                }}
                 className={`px-3 py-2 rounded-lg transition-colors hover:text-slate-950 hover:bg-slate-50 ${
                   currentPath === '/about' ? 'text-blue-600 font-semibold' : ''
                 }`}
               >
                 About
-              </button>
+              </a>
 
-              <button
-                onClick={() => handleNav('/contact')}
+              <a
+                href="/contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNav('/contact');
+                }}
                 className={`px-3 py-2 rounded-lg transition-colors hover:text-slate-950 hover:bg-slate-50 ${
                   currentPath === '/contact' ? 'text-blue-600 font-semibold' : ''
                 }`}
               >
                 Contact
-              </button>
+              </a>
             </nav>
           </div>
 
           {/* Right Action CTA */}
           <div className="hidden sm:flex items-center gap-3">
-            <button
-              onClick={() => handleNav('/tools')}
-              className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+            <a
+              href="/tools"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/tools');
+              }}
+              className="p-2 text-slate-500 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors inline-flex items-center justify-center"
               title="Search tools"
             >
               <Search className="w-4 h-4" />
-            </button>
+            </a>
 
             {currentUser ? (
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleNav('/account')}
+                <a
+                  href="/account"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/account');
+                  }}
                   className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold border transition-all ${
                     currentPath === '/account'
                       ? 'bg-blue-50 text-blue-700 border-blue-200'
@@ -200,46 +239,60 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     {(currentUser.name || currentUser.email).charAt(0).toUpperCase()}
                   </div>
                   <span className="max-w-[120px] truncate">{currentUser.name || 'Account'}</span>
-                </button>
+                </a>
                 <button
+                  type="button"
                   onClick={handleSignOut}
                   title="Sign Out"
-                  className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition"
+                  className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-xl transition cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                 </button>
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <button
-                  onClick={() => handleNav('/login')}
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/login');
+                  }}
                   className="px-3 py-2 text-xs font-semibold text-slate-700 hover:text-blue-600 transition"
                 >
                   Sign In
-                </button>
-                <button
-                  onClick={() => handleNav('/signup')}
+                </a>
+                <a
+                  href="/signup"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/signup');
+                  }}
                   className="px-3.5 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl shadow-sm shadow-blue-500/20 transition"
                 >
                   Sign Up Free
-                </button>
+                </a>
               </div>
             )}
 
-            <button
-              onClick={() => handleNav('/tools')}
+            <a
+              href="/tools"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/tools');
+              }}
               className="px-4 py-2 text-xs font-semibold text-slate-900 bg-slate-100 hover:bg-slate-200 active:bg-slate-300 rounded-xl transition-all flex items-center gap-1.5 group"
             >
               <span>Tools</span>
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </button>
+            </a>
           </div>
 
           {/* Mobile Hamburger Button */}
           <div className="flex md:hidden items-center gap-2">
             <button
+              type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none cursor-pointer"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -252,73 +305,113 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
       {mobileMenuOpen && (
         <div className="md:hidden border-b border-slate-200 bg-white px-4 pt-2 pb-6 space-y-3">
           <div className="grid grid-cols-2 gap-2 pb-3 border-b border-slate-100">
-            <button
-              onClick={() => handleNav('/tools')}
+            <a
+              href="/tools"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/tools');
+              }}
               className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 text-slate-800 text-sm font-medium text-left"
             >
               <Layers className="w-4 h-4 text-blue-600" />
               <span>All PDF Tools</span>
-            </button>
-            <button
-              onClick={() => handleNav('/tools/ai-pdf-summarizer')}
+            </a>
+            <a
+              href="/pdf-summarizer"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/pdf-summarizer');
+              }}
               className="flex items-center gap-2 p-2.5 rounded-lg bg-slate-50 text-slate-800 text-sm font-medium text-left"
             >
               <Sparkles className="w-4 h-4 text-amber-500" />
               <span>AI PDF Tools</span>
-            </button>
+            </a>
           </div>
 
           <div className="space-y-1">
-            <button
-              onClick={() => handleNav('/tools/pdf-to-word')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            <a
+              href="/pdf-to-word"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/pdf-to-word');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               PDF to Word
-            </button>
-            <button
-              onClick={() => handleNav('/tools/merge-pdf')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            </a>
+            <a
+              href="/merge-pdf"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/merge-pdf');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               Merge PDF
-            </button>
-            <button
-              onClick={() => handleNav('/tools/compress-pdf')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            </a>
+            <a
+              href="/compress-pdf"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/compress-pdf');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               Compress PDF
-            </button>
-            <button
-              onClick={() => handleNav('/tools/chat-with-pdf')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            </a>
+            <a
+              href="/chat-with-pdf"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/chat-with-pdf');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               Chat with PDF
-            </button>
-            <button
-              onClick={() => handleNav('/blog')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            </a>
+            <a
+              href="/blog"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/blog');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               Blog
-            </button>
-            <button
-              onClick={() => handleNav('/about')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            </a>
+            <a
+              href="/about"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/about');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               About
-            </button>
-            <button
-              onClick={() => handleNav('/contact')}
-              className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
+            </a>
+            <a
+              href="/contact"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNav('/contact');
+              }}
+              className="block w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-slate-50 rounded-md"
             >
               Contact
-            </button>
+            </a>
           </div>
 
           {/* User Auth Section in Mobile Menu */}
           <div className="pt-3 border-t border-slate-100">
             {currentUser ? (
               <div className="space-y-2">
-                <button
-                  onClick={() => handleNav('/account')}
+                <a
+                  href="/account"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/account');
+                  }}
                   className="w-full flex items-center justify-between px-3 py-2.5 rounded-xl bg-blue-50 text-blue-800 text-sm font-semibold"
                 >
                   <span className="flex items-center gap-2">
@@ -326,10 +419,11 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
                     My Account ({currentUser.name || currentUser.email})
                   </span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <button
+                  type="button"
                   onClick={handleSignOut}
-                  className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md flex items-center gap-2"
+                  className="w-full text-left px-3 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md flex items-center gap-2 cursor-pointer"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out
@@ -337,18 +431,26 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate }) => {
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-2">
-                <button
-                  onClick={() => handleNav('/login')}
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/login');
+                  }}
                   className="w-full py-2.5 text-center text-sm font-semibold text-slate-700 bg-slate-100 rounded-xl"
                 >
                   Sign In
-                </button>
-                <button
-                  onClick={() => handleNav('/signup')}
+                </a>
+                <a
+                  href="/signup"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNav('/signup');
+                  }}
                   className="w-full py-2.5 text-center text-sm font-semibold text-white bg-blue-600 rounded-xl shadow-sm"
                 >
                   Sign Up Free
-                </button>
+                </a>
               </div>
             )}
           </div>

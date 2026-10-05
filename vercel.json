@@ -11,7 +11,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=3600"
+          "value": "public, max-age=0, must-revalidate"
         },
         {
           "key": "X-Robots-Tag",
@@ -28,7 +28,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=3600"
+          "value": "public, max-age=0, must-revalidate"
         }
       ]
     }
@@ -39,7 +39,15 @@
       "destination": "/sitemap.xml"
     },
     {
+      "source": "/sitemap.xml/",
+      "destination": "/sitemap.xml"
+    },
+    {
       "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/robots.txt/",
       "destination": "/robots.txt"
     },
     {

@@ -179,9 +179,9 @@ export const ChatWithPdfInterface: React.FC = () => {
             <div className="w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 mb-4 group-hover:scale-105 transition-transform">
               <Upload className="w-8 h-8" />
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">
+            <p className="text-lg font-bold text-slate-900 mb-1">
               Select or Drop a PDF Document
-            </h3>
+            </p>
             <p className="text-sm text-slate-500 mb-4 max-w-sm">
               Upload legal agreements, study guides, reports, or research papers (up to 50MB) to begin chatting.
             </p>
@@ -202,9 +202,9 @@ export const ChatWithPdfInterface: React.FC = () => {
                     <FileText className="w-4 h-4" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold text-slate-900 truncate max-w-[160px]">
+                    <p className="text-xs font-bold text-slate-900 truncate max-w-[160px]">
                       {file.name}
-                    </h4>
+                    </p>
                     <span className="text-[11px] text-slate-500">
                       {(file.size / (1024 * 1024)).toFixed(2)} MB · Active
                     </span>

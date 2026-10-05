@@ -110,9 +110,9 @@ export const TranslatorInterface: React.FC = () => {
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 mb-4">
             <Globe className="w-8 h-8" />
           </div>
-          <h3 className="text-lg font-bold text-slate-900 mb-1">
+          <p className="text-lg font-bold text-slate-900 mb-1">
             Upload PDF Document to Translate
-          </h3>
+          </p>
           <p className="text-sm text-slate-500 mb-4 max-w-sm">
             Translate academic papers, legal documents, and foreign manuals while preserving tables and formatting.
           </p>
@@ -139,7 +139,7 @@ export const TranslatorInterface: React.FC = () => {
       ) : loading ? (
         <div className="py-16 text-center max-w-md mx-auto space-y-4">
           <div className="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto" />
-          <h3 className="text-base font-bold text-slate-900">{progressMsg}</h3>
+          <p className="text-base font-bold text-slate-900">{progressMsg}</p>
           <p className="text-xs text-slate-500">
             Translating into target language while preserving document typography...
           </p>
@@ -152,9 +152,9 @@ export const TranslatorInterface: React.FC = () => {
                 <FileText className="w-5 h-5" />
               </div>
               <div>
-                <h4 className="text-sm font-bold text-slate-900 truncate max-w-[280px]">
+                <p className="text-sm font-bold text-slate-900 truncate max-w-[280px]">
                   {file.name}
-                </h4>
+                </p>
                 <span className="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
                   <span>Source: Detected</span>
                   <ArrowRight className="w-3 h-3 text-slate-400" />

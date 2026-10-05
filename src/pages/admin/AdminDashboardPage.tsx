@@ -653,13 +653,17 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onLogout
                 <span className="text-[10px] text-blue-400 font-mono">Database Console</span>
               </div>
             </div>
-            <button
-              onClick={() => onNavigate('/')}
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('/');
+              }}
               title="View Public Site"
-              className="text-slate-400 hover:text-white p-1"
+              className="text-slate-400 hover:text-white p-1 inline-flex items-center"
             >
               <ExternalLink className="w-4 h-4" />
-            </button>
+            </a>
           </div>
 
           {/* Supabase Status Pill */}

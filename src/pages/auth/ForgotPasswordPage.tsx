@@ -66,14 +66,17 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({ onNaviga
                 If an account exists for <span className="font-semibold text-slate-900">{email}</span>, you will receive an email shortly with instructions to reset your password.
               </p>
               <div className="pt-4">
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/login')}
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/login');
+                  }}
                   className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-700"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Return to Sign In
-                </button>
+                </a>
               </div>
             </div>
           ) : (
@@ -120,14 +123,17 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({ onNaviga
               </form>
 
               <div className="mt-6 pt-6 border-t border-slate-100 text-center">
-                <button
-                  type="button"
-                  onClick={() => onNavigate('/login')}
+                <a
+                  href="/login"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('/login');
+                  }}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 hover:text-slate-900 transition"
                 >
                   <ArrowLeft className="w-4 h-4" />
                   Back to Sign In
-                </button>
+                </a>
               </div>
             </>
           )}
